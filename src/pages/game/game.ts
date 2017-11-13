@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import IO from 'socket.io-client';
 import { LoginPage } from '../login/login';
-import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the GamePage page.
@@ -16,16 +15,24 @@ import { Storage } from '@ionic/storage';
   selector: 'page-game',
   templateUrl: 'game.html',
 })
-export class GamePage extends LoginPage {
 
+export class GamePage extends LoginPage {
+  public map = { 
+    row: null,
+    line: null
+  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     super(navCtrl);
 
-    console.log(navParams.get('username'))
     const username = navParams.get('username');
     const password = navParams.get('password');
     const apiUrl = 'wac.epitech.eu:1337';
+
+  this.map = {
+    row : 10, 
+    line: 10
+  };
 
    let socket = IO(apiUrl, {query: `login=${username}&pwd=${password}`});
    
@@ -33,6 +40,4 @@ export class GamePage extends LoginPage {
       console.log(player)
     }); 
   }
-
-
 }
