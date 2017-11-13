@@ -13,15 +13,17 @@
 </ion-header>
 
 
-<ion-content class="toto" padding>
+<ion-content padding>
+  {{currentPlayer.login}}
+  hello
 <tbody>
   <table>
     <tr *ngFor="let x of row">
         <td></td> 
         <td *ngFor="let y of col">
-          {{
-            
-          }}
+          <!-- <div *ngIf="currentPlayer.x == x">
+            +
+            </div> -->
         </td> 
     </tr>
   </table>
