@@ -17,10 +17,11 @@ import { LoginPage } from '../login/login';
 })
 
 export class GamePage extends LoginPage {
-  public map = { 
-    row: null,
-    line: null
-  }
+public row = [];
+public col = [];
+public limitRow = 20;
+public limitCol = 20;
+public player;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     super(navCtrl);
@@ -29,15 +30,21 @@ export class GamePage extends LoginPage {
     const password = navParams.get('password');
     const apiUrl = 'wac.epitech.eu:1337';
 
-  this.map = {
-    row : 10, 
-    line: 10
-  };
+    for (var i = 1; i <= this.limitRow; i++) {
+      this.row.push(i);
+    }
 
+    for (var j = 1; j <= this.limitCol; j++) {
+      this.col.push(i);
+    }
+  
    let socket = IO(apiUrl, {query: `login=${username}&pwd=${password}`});
    
    socket.on('player/add', function(player) {
-      console.log(player)
+    if (player.login === username) {
+       this.currentPlayer = player;
+      console.log(this.currentPlayer)
+    }
     }); 
   }
 }
