@@ -18,20 +18,19 @@
 
   <tbody>
     <table>
-      <tr *ngFor="let x of row">
+      <tr *ngFor="let y of col">
         {{X}}
         <td></td>
-        <td *ngFor="let y of col">
+        <td *ngFor="let x of row">
           {{Y}}
           <div *ngIf="playerPositionX == x && playerPositionY == y">
-              <img src="../../assets/imgs/Link_pixel.png" alt="link" />
+            <img src="../../assets/imgs/Link_pixel.png" alt="link" />
           </div>
-          <div *ngFor= "let toto of arrayPlayers">
-             <div *ngIf="toto.x == x && toto.y == y">
-            O
-          </div>
+          <div *ngFor="let player of Object.keys(players)">
+            <div *ngIf="players[player].x == x && players[player].y == y">
+              O
             </div>
-          
+          </div>
         </td>
       </tr>
     </table>
