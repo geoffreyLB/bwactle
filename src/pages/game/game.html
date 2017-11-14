@@ -14,19 +14,20 @@
 
 
 <ion-content padding>
-  {{currentPlayer.login}}
-  hello
-<tbody>
-  <table>
-    <tr *ngFor="let x of row">
-        <td></td> 
+  {{playerPositionY}}
+
+  <tbody>
+    <table>
+      <tr *ngFor="let x of row">
+        <td></td>
         <td *ngFor="let y of col">
-          <!-- <div *ngIf="currentPlayer.x == x">
+          <div *ngIf="playerPositionX == x && playerPositionY == y">
             +
-            </div> -->
-        </td> 
-    </tr>
-  </table>
-</tbody>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </tbody>
+
 
 </ion-content> -->

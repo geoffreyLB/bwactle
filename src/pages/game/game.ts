@@ -22,6 +22,9 @@ export class GamePage extends LoginPage {
   public limitCol = 20;
   public player;
   public currentPlayer;
+  public playerPositionX;
+  public playerPositionY;
+  public playerLife;
 
   constructor(public navCtrl : NavController, public navParams : NavParams) {
     super(navCtrl);
@@ -47,13 +50,19 @@ export class GamePage extends LoginPage {
 
     socket.on('player/add', function (player) {
       if (player.login === username) {
-          that.getPlayer(player);
+        that.getPlayer(player);
       }
     });
   }
 
-  getPlayer(player: string) {
-    this.currentPlayer = player;
+  getPlayer(player : {
+    login: string,
+    x: number,
+    y: number
+  }) {
+   this.playerPositionX = player.x;
+   this.playerPositionY = player.y;
+   console.log(player)
   }
 
 }
