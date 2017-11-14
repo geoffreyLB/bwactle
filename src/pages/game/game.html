@@ -27,7 +27,8 @@
             <img src="../../assets/imgs/Link_pixel.png" alt="link" />
           </div>
           <div *ngFor="let player of Object.keys(players)">
-            <div *ngIf="players[player].x == x && players[player].y == y">
+            <div *ngIf="players[player].x == x && players[player].y == y && players[player].login !== playerLogin">
+              {{players[player].login}}
               O
             </div>
           </div>
