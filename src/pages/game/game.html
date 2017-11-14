@@ -15,14 +15,17 @@
 
 <ion-content padding>
   {{playerPositionY}}
+  {{playerPositionX}}
 
   <tbody>
     <table>
       <tr *ngFor="let x of row">
+        {{X}}
         <td></td>
         <td *ngFor="let y of col">
+          {{Y}}
           <div *ngIf="playerPositionX == x && playerPositionY == y">
-            +
+              <img src="../../assets/imgs/Link_pixel.png" alt="link" />
           </div>
         </td>
       </tr>

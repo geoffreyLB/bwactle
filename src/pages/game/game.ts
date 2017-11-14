@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import IO from 'socket.io-client';
 import {LoginPage} from '../login/login';
-import {platformBrowser} from '@angular/platform-browser/src/browser';
 
 /**
  * Generated class for the GamePage page.
@@ -18,8 +17,8 @@ export class GamePage extends LoginPage {
 
   public row = [];
   public col = [];
-  public limitRow = 20;
-  public limitCol = 20;
+  public limitRow = 40;
+  public limitCol = 40;
   public player;
   public currentPlayer;
   public playerPositionX;
