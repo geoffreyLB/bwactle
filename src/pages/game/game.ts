@@ -20,10 +20,14 @@ export class GamePage extends LoginPage {
   public limitRow = 40;
   public limitCol = 40;
   public player;
+  public players;
+  public playersX;
+  public playersY;
   public currentPlayer;
   public playerPositionX;
   public playerPositionY;
   public playerLife;
+  public arrayPlayers =[];
 
   constructor(public navCtrl : NavController, public navParams : NavParams) {
     super(navCtrl);
@@ -48,6 +52,7 @@ export class GamePage extends LoginPage {
     let socket = IO(apiUrl, {query: `login=${username}&pwd=${password}`});
 
     socket.on('player/add', function (player) {
+      that.displayPlayers(player);
       if (player.login === username) {
         that.getPlayer(player);
       }
@@ -61,7 +66,13 @@ export class GamePage extends LoginPage {
   }) {
    this.playerPositionX = player.x;
    this.playerPositionY = player.y;
-   console.log(player)
+  }
+
+  displayPlayers(player) {
+    this.arrayPlayers.push(player)
+    this.players = player;
+    this.playersX = player.x;
+    this.playersY = player.y;
   }
 
 }

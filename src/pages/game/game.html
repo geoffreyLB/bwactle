@@ -14,8 +14,7 @@
 
 
 <ion-content padding>
-  {{playerPositionY}}
-  {{playerPositionX}}
+
 
   <tbody>
     <table>
@@ -27,6 +26,12 @@
           <div *ngIf="playerPositionX == x && playerPositionY == y">
               <img src="../../assets/imgs/Link_pixel.png" alt="link" />
           </div>
+          <div *ngFor= "let toto of arrayPlayers">
+             <div *ngIf="toto.x == x && toto.y == y">
+            O
+          </div>
+            </div>
+          
         </td>
       </tr>
     </table>
