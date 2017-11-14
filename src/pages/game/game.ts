@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import IO from 'socket.io-client';
 import {LoginPage} from '../login/login';
@@ -19,15 +19,18 @@ export class GamePage extends LoginPage {
   public col = [];
   public limitRow = 40;
   public limitCol = 40;
-  public player;
   public players;
-  public playersX;
-  public playersY;
   public currentPlayer;
   public playerPositionX;
   public playerPositionY;
   public playerLife;
-  public arrayPlayers =[];
+  public arrayPlayers = [];
+  public socket;
+
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+    console.log(event)
+  }
 
   constructor(public navCtrl : NavController, public navParams : NavParams) {
     super(navCtrl);
@@ -49,9 +52,9 @@ export class GamePage extends LoginPage {
         .push(j);
     }
 
-    let socket = IO(apiUrl, {query: `login=${username}&pwd=${password}`});
+    this.socket = IO(apiUrl, {query: `login=${username}&pwd=${password}`});
 
-    socket.on('player/add', function (player) {
+    this.socket.on('player/add', function (player) {
       that.displayPlayers(player);
       if (player.login === username) {
         that.getPlayer(player);
@@ -66,13 +69,20 @@ export class GamePage extends LoginPage {
   }) {
    this.playerPositionX = player.x;
    this.playerPositionY = player.y;
+   
   }
 
   displayPlayers(player) {
     this.arrayPlayers.push(player)
     this.players = player;
-    this.playersX = player.x;
-    this.playersY = player.y;
+    const that = this;
+    console.log( this.arrayPlayers)
+
+    this.socket.on('player/move', function(players) {
+      console.log(players)
+        that.arrayPlayers.push(players)
+    });
+
   }
 
 }
