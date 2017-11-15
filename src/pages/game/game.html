@@ -15,17 +15,31 @@
 
 <ion-content padding class="bg">
 
-
   <div *ngFor="let player of Object.keys(players)">
     <div [ngStyle]="{'left': 30 * players[player].x + 'px', 'top': 30 * players[player].y + 'px', 'position': 'absolute'}">
-      <pre>{{players[player].login}}</pre>
-      <img id="goomba" src="../../assets/imgs/goomba.png" alt="goomba" />
+      <div *ngIf=" players[player].login !== playerLogin">
+        <ul>
+          <li> {{players[player].login}}</li>
+          <li> {{players[player].life}}</li>
+          <li> {{players[player].xp}}</li>
+        </ul>
+        <img id="goomba" src="../../assets/imgs/goomba.png" alt="goomba" />
+      </div>
       <div *ngIf=" players[player].login === playerLogin">
+        <ul>
+          <li> {{players[player].login}}</li>
+          <li> {{players[player].life}}</li>
+          <li> {{players[player].xp}}</li>
+        </ul>
         <img id="link" src="../../assets/imgs/Link_pixel.png" alt="link" />
       </div>
     </div>
-
   </div>
 
+  <div *ngFor="let item of Object.keys(items)">
+    <div [ngStyle]="{'left': 30 * items[item].x + 'px', 'top': 30 * items[item].y + 'px', 'position': 'absolute'}">
+      <img id="chest" src="../../assets/imgs/chest.png" alt="chest" />
+    </div>
+  </div>
 
 </ion-content>

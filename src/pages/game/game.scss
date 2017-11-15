@@ -12,8 +12,10 @@ page-game {
         border: 1px solid black;
     }
 
-    pre {
+    li {
         background-color: white;
+        list-style: none;
+        opacity: 0.7;
     }
 
     #goomba {
@@ -21,6 +23,10 @@ page-game {
     }
     
     #link {
+        width: 5rem;
+    }
+
+    #chest {
         width: 5rem;
     }
 }

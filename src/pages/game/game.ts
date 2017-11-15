@@ -15,6 +15,7 @@ export class GamePage extends LoginPage {
   public playerLogin;
   public playerLife;
   public socket;
+  public items = {};
   public Object = Object;
 
   @HostListener('document:keypress', ['$event'])
@@ -64,6 +65,11 @@ newMove(direction) {
         if (player.login === username) {
           that.currentPlayer(player);
         }
+      });
+
+      this.socket.on('item/add', function(item) {
+        that.items[item.name] = item;
+        console.log(that.items)
       });
   }
 
