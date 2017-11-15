@@ -9,10 +9,6 @@ import { LoginPage } from '../login/login';
 
 export class GamePage extends LoginPage {
 
-  public row = [];
-  public col = [];
-  public limitRow = 40;
-  public limitCol = 40;
   public players = {};
   public playerPositionX;
   public playerPositionY;
@@ -55,10 +51,7 @@ newMove(direction) {
     const username = navParams.get('username');
     const password = navParams.get('password');
     const apiUrl = 'wac.epitech.eu:1337';
-    
-    for (let i = 0; i <= this.limitRow; i++) {console.log('toto'); this.row.push(i);}
-    for (let j = 0; j <= this.limitCol; j++) { this.col.push(j);}
-    
+      
     this.socket = IO(apiUrl, {query: `login=${username}&pwd=${password}`});
     
     this.socket.on('player/move', function (player) {

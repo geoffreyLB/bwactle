@@ -16,26 +16,16 @@
 <ion-content padding>
 
 
-  <tbody>
-    <table>
-      <tr *ngFor="let y of col">
-        {{X}}
-        <td></td>
-        <td *ngFor="let x of row">
-          {{Y}}
-          <div *ngIf="playerPositionX == x && playerPositionY == y">
-            <img src="../../assets/imgs/Link_pixel.png" alt="link" />
-          </div>
-          <div *ngFor="let player of Object.keys(players)">
-            <div *ngIf="players[player].x == x && players[player].y == y && players[player].login !== playerLogin">
-              {{players[player].login}}
-              O
-            </div>
-          </div>
-        </td>
-      </tr>
-    </table>
-  </tbody>
+  <div *ngFor="let player of Object.keys(players)">
+    <div [ngStyle]="{'left': 30 * players[player].x + 'px', 'top': 30 * players[player].y + 'px', 'position': 'absolute'}">
+      {{players[player].login}} 
+      O
+      <div *ngIf=" players[player].login === playerLogin">
+          <img src="../../assets/imgs/Link_pixel.png" alt="link" />
+        </div>
+    </div>
+   
+  </div>
 
 
-</ion-content> -->
+</ion-content> 
