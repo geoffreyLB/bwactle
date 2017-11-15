@@ -1,11 +1,26 @@
 page-game {
+
+    .bg {
+        background-image: url('../../assets/imgs/cocorico.png');
+        background-repeat: no-repeat;
+        background-size: 71%;
+    }
+
     td {
         width: 8rem;
         height: 2rem;
         border: 1px solid black;
     }
 
-    img {
-        // position: absolute
+    pre {
+        background-color: white;
+    }
+
+    #goomba {
+        width: 5rem;
+    }
+    
+    #link {
+        width: 5rem;
     }
 }

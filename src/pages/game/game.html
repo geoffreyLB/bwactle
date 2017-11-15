@@ -13,19 +13,19 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="bg">
 
 
   <div *ngFor="let player of Object.keys(players)">
     <div [ngStyle]="{'left': 30 * players[player].x + 'px', 'top': 30 * players[player].y + 'px', 'position': 'absolute'}">
-      {{players[player].login}} 
-      O
+      <pre>{{players[player].login}}</pre>
+      <img id="goomba" src="../../assets/imgs/goomba.png" alt="goomba" />
       <div *ngIf=" players[player].login === playerLogin">
-          <img src="../../assets/imgs/Link_pixel.png" alt="link" />
-        </div>
+        <img id="link" src="../../assets/imgs/Link_pixel.png" alt="link" />
+      </div>
     </div>
-   
+
   </div>
 
 
-</ion-content> 
+</ion-content>
