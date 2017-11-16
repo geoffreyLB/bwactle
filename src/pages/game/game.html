@@ -1,5 +1,5 @@
 
-<ion-content class="bg" padding>
+<ion-content (ionScroll)="onScroll($event)" direction="xy" class="bg" padding>
   <img class="map" src="../../assets/imgs/cocorico.png" alt="map" />
   <div *ngFor="let player of Object.keys(players)">
     <div [ngStyle]="{'left': 60 * players[player].x + 'px', 'top': 60 * players[player].y + 'px', 'position': 'absolute'}">
@@ -26,6 +26,10 @@
     <div [ngStyle]="{'left': 60 * items[item].x + 'px', 'top': 60 * items[item].y + 'px', 'position': 'absolute'}">
       <img id="chest" src="../../assets/imgs/chest.png" alt="chest" />
     </div>
+  </div>
+
+  <div class="info">
+    <p>{{info}}</p>
   </div>
 
 </ion-content>

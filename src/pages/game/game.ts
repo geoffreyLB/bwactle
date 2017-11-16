@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import {IonicPage, NavController, NavParams } from 'ionic-angular';
 import IO from 'socket.io-client';
+// import * as $ from 'jquery'
 
 import { LoginPage } from '../login/login';
 
@@ -17,8 +18,11 @@ export class GamePage extends LoginPage {
   public socket;
   public items = {};
   public lastDirection;
+  public username;
   public item;
   public Object = Object;
+  public info;
+
 
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -60,6 +64,7 @@ export class GamePage extends LoginPage {
 
     this.socket.on('msg', function(message) {
       console.log('message =>', message)
+      that.info = message.content;
     });
     
     this.socket.on('player/move', function (player) {
@@ -75,12 +80,16 @@ export class GamePage extends LoginPage {
       });
 
       this.socket.on('player/remove', function(player_id) {
-        console.log('disconnect', player_id)
+        that.info =  `le joueur ${player_id} est deconnecté`;
         delete that.players[player_id];
       });
 
       this.socket.on('item/add', function(item) {
         that.items[item.name] = item;
+      });
+
+      this.socket.on('player/experience', function(player) {
+        console.log('level =>', player)
       });
   }
 
@@ -91,15 +100,16 @@ export class GamePage extends LoginPage {
   }
 
   newDirection(direction: string) {
-    const that = this;
+    // const that = this;
 
     this.socket.emit('move', direction);
 
-    this.socket.on('player/move', function(player) {
-     if (player.login === 'MrPink') {
-      that.currentPlayer(player)
-     }
-    });
+    // this.socket.on('player/move', function(player) {
+    //  if (player.login === 'MrPink') {
+    //    console.log('wtf')
+    //   that.currentPlayer(player)
+    //  }
+    // });
     return this.lastDirection = direction;
   }
 
@@ -108,25 +118,34 @@ export class GamePage extends LoginPage {
 
     this.socket.emit('attack', direction)
     this.socket.on('player/hurt', function(player) {
-      console.log(player)
       that.players[player.login] = player;
     });
   }
 
   pickItem() {
     const that = this;
+
     this.socket.emit('pick') 
     this.socket.on('inventory/add', function(item) {
+      console.log(item)
+      that.info = `Vous avez trouvé ${item.name}`;
       that.item = item;
     })
   }
 
   equipItem() {
     const that = this;
+
     if (this.item) {
       console.log(this.item)
       this.socket.emit('equip', that.item.id)
+      that.info = `Vous avez équipé ${that.item.name}`;
     }
   }
+
+  // onScroll(event: Event) {
+    // console.log(event);
+    // $(".info").animate({"left": ($(window).scrollLeft()) + "px"}, "slow" );
+  // }
 
 }
