@@ -1,41 +1,38 @@
 page-game {
+    overflow-x: scroll !important;
 
     .bg {
-        // height: 107rem;
-        // width: 102rem;
-        // border: 1px solid black;
+        // overflow: hidden
+        height: 100rem;
+        width: 260rem;
+        border: 1px solid black;
+        // overflow-x: scroll; 
         // border-width: 40px 40px 40px 40px; 
         // background-image: url('../../assets/imgs/cocorico.png');
         // background-repeat: no-repeat;
         // width: 30%;
         // background-size: cover;
     }
-
     .map {
-        width: 500rem;
-        // height: 106rem;
+        // height: 100rem;
+        width: 600rem;  
     }
-
     td {
         width: 8rem;
         height: 2rem;
         border: 1px solid black;
     }
-
     li {
         background-color: white;
         list-style: none;
         opacity: 0.7;
     }
-
     #goomba {
         width: 5rem;
     }
-    
     #link {
-        width: 5rem;
+        width: 5rem; // overflow-y: auto;
     }
-
     #chest {
         margin-top: 6.5rem;
         height: 5rem;

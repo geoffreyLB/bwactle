@@ -117,7 +117,6 @@ export class GamePage extends LoginPage {
     const that = this;
     this.socket.emit('pick') 
     this.socket.on('inventory/add', function(item) {
-      console.log('pick item =>', item)
       that.item = item;
     })
   }
