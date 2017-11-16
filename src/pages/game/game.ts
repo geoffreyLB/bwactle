@@ -16,6 +16,8 @@ export class GamePage extends LoginPage {
   public playerLife;
   public socket;
   public items = {};
+  public lastDirection;
+  public item;
   public Object = Object;
 
   @HostListener('document:keypress', ['$event'])
@@ -35,16 +37,17 @@ export class GamePage extends LoginPage {
       case 115: 
         direction = "down";
         break;
+      case 102:
+        this.pickItem();
+      case 101: 
+        this.attackEnnemie(this.lastDirection);
+      case 105:
+        this.equipItem()
       default:
         return;
     }
     this.newDirection(direction);
 }
-
-newMove(direction) {
- 
-}
-
   constructor(public navCtrl : NavController, public navParams : NavParams) {
     super(navCtrl);
     
@@ -54,6 +57,10 @@ newMove(direction) {
     const apiUrl = 'wac.epitech.eu:1337';
       
     this.socket = IO(apiUrl, {query: `login=${username}&pwd=${password}`});
+
+    this.socket.on('msg', function(message) {
+      console.log('message =>', message)
+    });
     
     this.socket.on('player/move', function (player) {
         that.players[player.login].x = player.x;
@@ -67,9 +74,12 @@ newMove(direction) {
         }
       });
 
+      // this.socket.on('player/remove', function(player_id) {
+
+      // });
+
       this.socket.on('item/add', function(item) {
         that.items[item.name] = item;
-        console.log(that.items)
       });
   }
 
@@ -89,6 +99,27 @@ newMove(direction) {
       that.currentPlayer(player)
      }
     });
+    return this.lastDirection = direction;
+  }
+
+  attackEnnemie(direction: string) {
+    this.socket.emit('attack', direction)
+    this.socket.on('player/hurt', function(player) {
+      console.log(player)
+    });
+  }
+
+  pickItem() {
+    const that = this;
+    this.socket.emit('pick') 
+    this.socket.on('inventory/add', function(item) {
+      that.item = item;
+    })
+  }
+
+  equipItem() {
+    console.log(this.item)
+    // this.socket.emit('equip', this.item.id)
   }
 
 }

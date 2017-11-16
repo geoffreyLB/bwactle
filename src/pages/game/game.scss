@@ -1,9 +1,19 @@
 page-game {
 
     .bg {
-        background-image: url('../../assets/imgs/cocorico.png');
-        background-repeat: no-repeat;
-        background-size: 71%;
+        // height: 107rem;
+        // width: 102rem;
+        // border: 1px solid black;
+        // border-width: 40px 40px 40px 40px; 
+        // background-image: url('../../assets/imgs/cocorico.png');
+        // background-repeat: no-repeat;
+        // width: 30%;
+        // background-size: cover;
+    }
+
+    .map {
+        width: 500rem;
+        // height: 106rem;
     }
 
     td {
@@ -27,6 +37,7 @@ page-game {
     }
 
     #chest {
-        width: 5rem;
+        margin-top: 12.5rem;
+        height: 5rem;
     }
 }

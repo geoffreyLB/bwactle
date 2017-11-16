@@ -4,19 +4,13 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>game</ion-title>
-  </ion-navbar>
-
-</ion-header>
 
 
-<ion-content padding class="bg">
 
+<ion-content class="bg" padding>
+  <!-- <img class="map" src="../../assets/imgs/cocorico.png" alt="map" /> -->
   <div *ngFor="let player of Object.keys(players)">
-    <div [ngStyle]="{'left': 30 * players[player].x + 'px', 'top': 30 * players[player].y + 'px', 'position': 'absolute'}">
+    <div [ngStyle]="{'left': 60 * players[player].x + 'px', 'top': 60 * players[player].y + 'px', 'position': 'absolute'}">
       <div *ngIf=" players[player].login !== playerLogin">
         <ul>
           <li> {{players[player].login}}</li>
@@ -37,7 +31,7 @@
   </div>
 
   <div *ngFor="let item of Object.keys(items)">
-    <div [ngStyle]="{'left': 30 * items[item].x + 'px', 'top': 30 * items[item].y + 'px', 'position': 'absolute'}">
+    <div [ngStyle]="{'left': 60 * items[item].x + 'px', 'top': 60 * items[item].y + 'px', 'position': 'absolute'}">
       <img id="chest" src="../../assets/imgs/chest.png" alt="chest" />
     </div>
   </div>
