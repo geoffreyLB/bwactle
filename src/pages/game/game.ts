@@ -74,9 +74,10 @@ export class GamePage extends LoginPage {
         }
       });
 
-      // this.socket.on('player/remove', function(player_id) {
-
-      // });
+      this.socket.on('player/remove', function(player_id) {
+        console.log('disconnect', player_id)
+        delete that.players[player_id];
+      });
 
       this.socket.on('item/add', function(item) {
         that.items[item.name] = item;
@@ -103,9 +104,12 @@ export class GamePage extends LoginPage {
   }
 
   attackEnnemie(direction: string) {
+    const that = this;
+
     this.socket.emit('attack', direction)
     this.socket.on('player/hurt', function(player) {
       console.log(player)
+      that.players[player.login] = player;
     });
   }
 
@@ -113,13 +117,17 @@ export class GamePage extends LoginPage {
     const that = this;
     this.socket.emit('pick') 
     this.socket.on('inventory/add', function(item) {
+      console.log('pick item =>', item)
       that.item = item;
     })
   }
 
   equipItem() {
-    console.log(this.item)
-    // this.socket.emit('equip', this.item.id)
+    const that = this;
+    if (this.item) {
+      console.log(this.item)
+      this.socket.emit('equip', that.item.id)
+    }
   }
 
 }
