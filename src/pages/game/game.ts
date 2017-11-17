@@ -1,7 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import {IonicPage, NavController, NavParams } from 'ionic-angular';
 import IO from 'socket.io-client';
-// import * as $ from 'jquery'
 
 import { LoginPage } from '../login/login';
 
@@ -92,7 +91,6 @@ export class GamePage extends LoginPage {
         console.log('level =>', player)
       });
   }
-
   currentPlayer(player : { login: string, x: number, y: number}) {
     this.playerPositionX = player.x;
     this.playerPositionY = player.y;
@@ -100,16 +98,8 @@ export class GamePage extends LoginPage {
   }
 
   newDirection(direction: string) {
-    const that = this;
 
     this.socket.emit('move', direction);
-
-    // this.socket.on('player/move', function(player) {
-    //  if (player.login === 'MrPink') {
-    //    console.log('wtf')
-    //   that.currentPlayer(player)
-    //  }
-    // });
     return this.lastDirection = direction;
   }
 
@@ -142,10 +132,4 @@ export class GamePage extends LoginPage {
       that.info = `Vous avez équipé ${that.item.name}`;
     }
   }
-
-  onScroll(event: Event) {
-    // console.log(event);
-    // $(".info").animate({"left": ($(window).scrollLeft()) + "px"}, "slow" );
-  }
-
 }

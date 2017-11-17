@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { NativeAudio } from '@ionic-native/native-audio';
 
 @Component({
   selector: 'page-home',
@@ -9,15 +8,10 @@ import { NativeAudio } from '@ionic-native/native-audio';
 
 export class HomePage {
 
-  constructor(public navCtrl: NavController,private nativeAudio: NativeAudio) {
-    this.nativeAudio.preloadSimple('menu', '../../assets/music/01-title-theme.mp3');
+  constructor(public navCtrl: NavController) {
   }
 
-  ionViewDidLoad() {
-    this.nativeAudio.play('menu');;
-  }
-
-  toto() {
+  Login() {
     this.navCtrl.push("LoginPage")
   }
 

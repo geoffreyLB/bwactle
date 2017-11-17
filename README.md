@@ -6,6 +6,12 @@ Can be found here: http://wac.epitech.eu:1337
 ## protocol:
 Built on top of socket.io
 
+## Ionic 3:
+***Launch frontend***
+```sh
+ionic serve
+```
+
 ## Connecting to the API:
 
 **You have to send a login and a password in the connection query. If the account doesn't exist, it will be automatically created.**
