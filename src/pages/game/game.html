@@ -32,4 +32,10 @@
     <p>{{info}}</p>
   </div>
 
+  <div class="list">
+      <div *ngFor="let player of Object.keys(players)">
+       <pre>{{players[player].login}}</pre> 
+        </div>
+  </div>
+
 </ion-content>

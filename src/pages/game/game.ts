@@ -100,7 +100,7 @@ export class GamePage extends LoginPage {
   }
 
   newDirection(direction: string) {
-    // const that = this;
+    const that = this;
 
     this.socket.emit('move', direction);
 
@@ -143,9 +143,9 @@ export class GamePage extends LoginPage {
     }
   }
 
-  // onScroll(event: Event) {
+  onScroll(event: Event) {
     // console.log(event);
     // $(".info").animate({"left": ($(window).scrollLeft()) + "px"}, "slow" );
-  // }
+  }
 
 }
