@@ -1,4 +1,22 @@
 page-home {
     background-image: url('../../assets/imgs/menu.jpg');
     background-size: cover;
+
+    div {
+        margin: 70rem 0 0 90rem;
+        > button {
+            box-shadow: 4px 3px 5px black;
+            width: 20rem;
+            height: 5rem;
+            background-color: #B22222;
+            color: #006FBF;
+            font-size: 1.6rem;
+            font-weight: bold;
+            text-shadow: 4px 3px 5px black;
+            border: 1px solid grey;
+        }
+        button:hover {
+            background-color: #990000;
+        }
+    }
 }
